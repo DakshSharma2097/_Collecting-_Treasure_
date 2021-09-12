@@ -77,7 +77,7 @@ function draw() {
         gameState=END
     }
     }
-    else{
+    else if(gameState===END){
     boy.destroy();
       path.velocityY=0
     }
