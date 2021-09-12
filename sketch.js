@@ -70,18 +70,18 @@ function draw() {
       jwelleryG.destroyEach();
       treasureCollection= treasureCollection + 150;
       
-    }else{
+    }else
       if(swordG.isTouching(boy)) {
       swordG.destroyEach();
       treasureCollection=treasureCollection - 50;
         gameState=END
     }
     }
-    else if (gameState===END){
+    else{
     boy.destroy();
       path.velocityY=0
     }
-  }
+  
   
   
 
