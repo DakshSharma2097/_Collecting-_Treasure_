@@ -1,8 +1,8 @@
-var path,boy,cash,diamonds,jwellery,ruby;
-var pathImg,boyImg,cashImg,diamondsImg,jwelleryImg,rubyImg;
-var i;
+var path,boy,cash,diamonds,jwellery,ruby,sword;
+var pathImg,boyImg,cashImg,diamondsImg,jwelleryImg,rubyImg,swordImg;
+var i,PLAY=1,END=0,gameState=PLAY;
 var treasureCollection = 0;
-var cashG,diamondsG,jwelleryG,rubyG;
+var cashG,diamondsG,jwelleryG,rubyG,swordG;
 
 function preload(){
   pathImg = loadImage("Road.png");
@@ -10,7 +10,7 @@ function preload(){
   cashImg = loadImage("cash.png");
   diamondsImg = loadImage("diamonds.png");
   jwelleryImg = loadImage("jwell.png");
-  rubyImg = loadImage("sword.png");
+  swordImg= loagImage("sword.png");
 }
 
 function setup(){
@@ -26,7 +26,7 @@ path.velocityY = 4;
 //creating boy running
 boy = createSprite(160,330,20,20);
 boy.addAnimation("JakeRunning",boyImg);
-boy.scale=0.08;
+boy.scale=0.08;ruby
   
   
 cashG=new Group();
@@ -38,11 +38,13 @@ rubyG=new Group();
 
 function draw() {
   background(0);
-  path.velocityY = 4;
+
   
   // boy moving on Xaxis with mouse'
   boy.x = World.mouseX;
-  
+  if(gameState===PLAY){
+    path.velocityY = 4;
+    
   edges= createEdgeSprites();
   boy.collide(edges);
   
@@ -69,15 +71,19 @@ function draw() {
       treasureCollection= treasureCollection + 150;
       
     }else{
-      if(rubyG.isTouching(boy)) {
-      rubyG.destroyEach();
+      if(swordG.isTouching(boy)) {
+      swordG.destroyEach();
       treasureCollection=treasureCollection - 50;
+        gameState=END
+    }
+    }
+    else if (gameState===END){
+    boy.destroy();
+      path.velocityY=0
     }
   }
   
-  if(treasureCollection%500 === 0){
-    
-  }
+  
 
   drawSprites();
   textSize(20);
@@ -119,14 +125,12 @@ jwellery.addImage(jwelleryImg);
   jwelleryG.add(jwellery);
   }
 }
-
-function createRuby(){
+function createSword(){
   if (World.frameCount % 150 == 0) {
-  var ruby = createSprite(Math.round(random(50, 350),40, 10, 10));
-ruby.addImage(rubyImg);
-  ruby.scale=0.1;
-  ruby.velocityY = 3;
-  ruby.lifetime = 150;
-  rubyG.add(ruby);
+  var sword = createSprite(Math.round(random(50, 350),40, 10, 10));
+sword.addImage(swordImg);
+  sword.scale=0.1;
+  swordswordsword.velocityY = 3;
+  swordsword.lifetime = 150;
+  swordG.add(sword);
   }
-}
